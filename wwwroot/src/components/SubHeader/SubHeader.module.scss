@@ -1,0 +1,80 @@
+@import "../../index.scss";
+
+.header {
+  display: flex;
+  position: fixed;
+  top: 58px;
+  height: 58px;
+  z-index: 2;
+  .left {
+    height: 64px;
+    background-color: rgb(36, 27, 27);
+    width: 15vw;
+    border-bottom: solid 1px;
+    border-bottom: 1px solid $primary;
+    position: relative;
+    z-index: 3;
+    .light {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 7px;
+      border: $primary 1px solid;
+      height: 6px;
+      background-color: #ee0c0c;
+      transform: translate(50%, 0%) skewX(-45deg) rotateY(0) rotate(90deg);
+      box-shadow: 0 0 7px #f00, 0 0 10px #f00, 0 0 21px #f00, 0 0 42px #df2020;
+    }
+  }
+  .right {
+    height: 64px;
+    background-color: rgb(36, 27, 27);
+    width: 15vw;
+    border-bottom: solid 1px;
+    border-bottom: 1px solid $primary;
+    position: relative;
+    z-index: 3;
+    .light {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 7px;
+      border: $primary 1px solid;
+      height: 6px;
+      background-color: #ee0c0c;
+      transform: translate(-50%, 0%) skewX(45deg) rotateY(0) rotate(90deg);
+      box-shadow: 0 0 7px #f00, 0 0 10px #f00, 0 0 21px #f00, 0 0 42px #df2020;
+    }
+  }
+  nav {
+    width: 70vw;
+    height: calc(64px - 6px);
+    background-color: rgb(36, 27, 27);
+    display: flex;
+    align-items: center;
+    padding: 0px 80px 0px 40px;
+    box-sizing: border-box;
+    border-bottom: $primary 1px solid;
+    z-index: 2;
+    a {
+      margin-right: 40px;
+      text-decoration: none;
+      padding: 5px;
+    }
+    .selected {
+    //   border-bottom: 3px solid $primary;
+      box-shadow: 0 4px 2px -2px #f00 , 0 7px 11px -8px #f00;
+      text-shadow: 0 0 10px rgb(255, 18, 18), 0 0 20px rgb(255, 22, 22), 0 0 30px #f00;
+      color: $primary;
+    }
+  }
+}
+.not_fixed {
+  position: relative;
+  top: 0;
+}
+
+.spacer{
+    height: 68px;
+    width: 100vw;
+}

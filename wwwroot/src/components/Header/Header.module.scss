@@ -1,0 +1,51 @@
+@import "../../index.scss";
+
+.header_main {
+    display: flex;
+    position: fixed;
+    z-index: 3;
+  .left {
+    height: 64px;
+    background-color: rgb(36, 27, 27);
+    width: 20vw;
+    border-bottom: solid 1px;
+    border-bottom: 1px solid $primary;
+    position: relative;
+    .light {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 7px;
+      border: $primary 1px solid;
+      height: 6px;
+      background-color: #ee0c0c;
+      transform: translate(50%, 0%) skewX(-45deg) rotateY(0) rotate(90deg);
+      box-shadow: 0 0 7px #f00, 0 0 10px #f00, 0 0 21px #f00, 0 0 42px #df2020;
+    }
+  }
+  nav{
+    width: 80vw;
+    height: calc(64px - 6px);
+    background-color: rgb(36, 27, 27);
+    display: flex;
+    align-items: center;
+    padding: 0px 80px 0px 40px;
+    box-sizing: border-box;
+    border-bottom: $primary 1px solid;
+    span{
+        height: 60%;
+        width: 2px;
+        background-color: rgb(68, 68, 68);
+        margin: 20px;
+        transform: skewX(-15deg) rotateY(0) rotate(0);
+    }
+    a{
+        margin-left: auto;
+        &:hover{
+            cursor: pointer;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+    }
+  }
+}

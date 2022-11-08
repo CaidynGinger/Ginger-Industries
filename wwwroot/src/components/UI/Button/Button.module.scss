@@ -1,0 +1,28 @@
+@import '../../../index.scss';
+
+button {
+  font-family: 'Red Hat Text', sans-serif;
+  padding: 4px 10px;
+  border: $primary 1px solid;
+  color: white;
+  background-color: #ee0c0c21;
+  bottom: 1px;
+  cursor: pointer;
+  letter-spacing: 0.05rem;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.button:focus {
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background-color: #ee0c0c75;
+  box-shadow: 0 0 7px rgb(194, 17, 17), 0 0 10px rgb(194, 17, 17), 0 0 21px rgb(194, 17, 17);
+}
+
+.button:hover ion-icon {
+  color: white;
+}
