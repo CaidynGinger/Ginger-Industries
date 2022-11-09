@@ -5,6 +5,7 @@ import { Main } from "./components/Main/Main";
 import { Admin } from "./components/Pages/Admin/Admin";
 import { Products } from "./components/Pages/Admin/Pages/Products/Products";
 import { AllProducts } from "./components/Pages/AllProducts/AllProducts";
+import { IndividualProductPage } from "./components/Pages/IndevidualProductPage/IndividualProductPage";
 import { Landing } from "./components/Pages/Landing/Landing";
 import { Login } from "./components/Pages/Login/Login";
 import Register from "./components/Pages/Register/Register";
@@ -23,6 +24,7 @@ export const RouterComponent = () => {
           <Route path="/" element={<Main />}>
             <Route path="/" element={<Landing />} />
             <Route path="/all-products" element={<AllProducts />} />
+            <Route path="/products/:productId" element={<IndividualProductPage />} />
             <Route element={<RequireAuth allowedRoles={ROLES} />}>
               <Route path="/cart" element={<><h1>Cart</h1></>} />
             </Route>

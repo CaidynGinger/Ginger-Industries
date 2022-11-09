@@ -1,13 +1,15 @@
-import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "../../../../../../api/axios";
 import { Button } from "../../../../../UI/Button/Button";
 import { Checkbox } from "../../../../../UI/Checkbox/Checkbox";
 import { Input } from "../../../../../UI/Input/Input";
 import { Textarea } from "../../../../../UI/Textarea/Textarea";
+import classes from "./EditProduct.module.scss";
 
-import classes from "./AddProductModal.module.scss";
+export const EditProduct = (props) => {
+  const SelectedProductDetails = props.SelectedProductDetails;
+  console.log(SelectedProductDetails);
 
-export const AddProductModal = (props) => {
   const [ProductName, setProductName] = useState("");
   const [ReportBody, setReportBody] = useState("");
   const [ProductPrice, setProductPrice] = useState(null);
@@ -15,7 +17,18 @@ export const AddProductModal = (props) => {
   const [DiscountAmount, setDiscountAmount] = useState(0);
   const [ProductStock, setProductStock] = useState(null);
   const [ShowOnHomepage, setShowOnHomepage] = useState(null);
-  const [ProductImage, setProductImage] = useState();
+
+  useEffect(() => {
+    if (SelectedProductDetails.title) {
+      setProductName(SelectedProductDetails.title);
+      setReportBody(SelectedProductDetails.desc);
+      setProductPrice(SelectedProductDetails.price);
+      setIsDiscounted(SelectedProductDetails.discountOptions.discount);
+      setDiscountAmount(SelectedProductDetails.discountOptions.discountAmount);
+      setProductStock(SelectedProductDetails.stock);
+      setShowOnHomepage(SelectedProductDetails.showCase);
+    }
+  }, [props.SelectedProductDetails]);
 
   const CheckRoleHandler = (e) => {
     setIsDiscounted((prevState) => {
@@ -29,90 +42,28 @@ export const AddProductModal = (props) => {
     });
   };
 
-  useEffect(() => {
-    if (DiscountAmount > 100) {
-      setDiscountAmount(100);
-      return;
-    }
-    if (DiscountAmount < 0) {
-      setDiscountAmount(0);
-      return;
-    }
-  }, [DiscountAmount]);
-
-  const createNewProduct = (event) => {
+  const UpdateProduct = (event) => {
     event.preventDefault();
-
-    const payloadData = new FormData();
-
-    const payload = {
-      title: ProductName,
-      price: ProductPrice,
-      desc: ReportBody,
-      image: img.current.value.substr(12),
-      stock: ProductStock,
-      showCase: ShowOnHomepage,
-      discountAmount: DiscountAmount,
-      discount: IsDiscounted,
-    };
-
-    payloadData.append("information", JSON.stringify(payload));
-    payloadData.append("image", ProductImage);
-
-    // console.log(payloadData);
-    console.log(payload);
-
-    const postProduct = async () => {
+    const patchProduct = async () => {
       try {
-        const response = await axios
-          .post("http://localhost:3500/add-product", payloadData, {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          })
-          .then((res) => {
-            console.log("product added");
-            // setModal(true);
-          })
-          .catch((err) => {
-            console.log(err);
-            // setModal(false);
+        const response = await axios.patch("/product", {
+            id: SelectedProductDetails._id,
+            title: ProductName,
+            price: ProductPrice,
+            desc: ReportBody,
+            stock: ProductStock,
+            showCase: ShowOnHomepage,
+            discountAmount: DiscountAmount,
+            discount: IsDiscounted,
           });
       } catch (err) {
         console.log(err);
       }
     };
-    postProduct();
-    setProductName("");
-    setReportBody("");
-    setProductPrice(null);
-    setIsDiscounted(false);
-    setDiscountAmount(null);
-    setProductStock(null);
-    setShowOnHomepage(null);
-    setProductImage();
-    props.closeModalHandler()
+
+    patchProduct();
+    props.setSelectedProduct(null);
   };
-
-  const img = useRef();
-
-  const imageVal = (e) => {
-    let file = e.target.files[0];
-    setProductImage(file);
-    let reader = new FileReader();
-
-    reader.onloadend = function () {
-      // console.log(reader.result);
-
-      let image = new Image();
-      image.src = reader.result;
-      image.setAttribute("style", "width: auto; border-radius: 15px;");
-      document.getElementById("screenshot").appendChild(image);
-    };
-    reader.readAsDataURL(file);
-  };
-
-  //   console.log(img.current.value);
 
   return (
     <section
@@ -120,11 +71,16 @@ export const AddProductModal = (props) => {
         props.showNewProductModal ? classes.show : undefined
       }`}
     >
-      <div className={classes.close_btn} onClick={props.closeModalHandler}>
+      <div
+        className={classes.close_btn}
+        onClick={() => {
+            props.setSelectedProduct(null);
+        }}
+      >
         <ion-icon name="close-outline"></ion-icon>
       </div>
-      <form autoComplete="off" onSubmit={createNewProduct}>
-        <h1>Add new Product</h1>
+      <form autoComplete="off" onSubmit={UpdateProduct}>
+        <h1>Edit Product: {SelectedProductDetails.title}</h1>
         <Input
           label="Product Name"
           type="text"
@@ -145,22 +101,6 @@ export const AddProductModal = (props) => {
             setReportBody(event.target.value);
           }}
         />
-        <div className={classes.screenshot_uploader}>
-          <label className={classes.upload} htmlFor="upload">
-            <p> Upload Screenshot(s)</p>
-
-            <input
-              name="upload"
-              className={classes.upload}
-              type="file"
-              // inputType="file"
-              ref={img}
-              onChange={imageVal}
-            />
-          </label>
-          <div id="screenshot" className={classes.screenshot}></div>
-        </div>
-
         <div className={classes.price_container}>
           <div className={classes.currency}>
             <ion-icon name="logo-electron"></ion-icon>
@@ -224,7 +164,7 @@ export const AddProductModal = (props) => {
           />
         </div>
         <br></br>
-        <Button>Create New Product</Button>
+        <Button>Update Product</Button>
       </form>
     </section>
   );

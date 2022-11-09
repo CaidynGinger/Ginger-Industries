@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../Button/Button";
 import classes from "./ShipCard.module.scss";
 
@@ -6,12 +7,15 @@ export const ShipCard = (props) => {
 
   const shipDetails = props.shipDetails;
 
+  const navigate = useNavigate()
+
   const price = parseFloat(shipDetails.price).toFixed(2);
   const DiscountPrice = parseFloat(
     price - (price / 100) * shipDetails.discountOptions.discountAmount
   ).toFixed(2);
+  console.log(shipDetails);
   return (
-    <div className={classes.ship_card}>
+    <div onClick={() => {navigate('/products/' + shipDetails._id)}} className={classes.ship_card}>
       <img
         src={
           shipDetails.image
@@ -59,7 +63,7 @@ export const ShipCard = (props) => {
         )}
 
         <div className={classes.buttons}>
-          <a className={classes.a}>MORE INFO</a>
+          <Link to={'/products/' + shipDetails._id} className={classes.a}>MORE INFO</Link>
           <Button>Add To Cart</Button>
         </div>
       </div>

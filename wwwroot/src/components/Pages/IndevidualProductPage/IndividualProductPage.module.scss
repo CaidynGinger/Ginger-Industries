@@ -1,0 +1,141 @@
+@import "../../../index.scss";
+.individual_product_page {
+  margin-top: 160px;
+}
+
+.card {
+  width: 100%;
+  border-bottom: 1px solid $primary;
+  border-top: 1px solid $primary;
+  .top_decor {
+    width: 70px;
+    background-color: red;
+    height: 1px;
+    display: block;
+  }
+  .ship_card {
+    padding: 0;
+  }
+  .ship_container {
+    padding: 0;
+    display: flex;
+    width: 100%;
+  }
+  .div {
+    padding: 20px;
+    header {
+      display: flex;
+      align-items: center;
+    }
+    .arrows {
+      color: #ee0c0c;
+      text-shadow: 0 0 7px rgb(82, 82, 82), 0 0 10px #f00, 0 0 21px #f00,
+        0 0 42px #df2020;
+      transition: all 0.3 ease-in-out;
+      margin-right: 40px;
+    }
+  }
+}
+
+.left_col {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-right: 60px;
+}
+
+.price_display {
+  font-size: 26px;
+}
+
+.price {
+  display: flex;
+  margin-top: -5px;
+  ion-icon {
+    font-size: 30px;
+  }
+  .main_price {
+    display: flex;
+    align-items: center;
+  }
+  p {
+    margin-top: 15px;
+    font-size: 16px;
+  }
+  .discount {
+    position: relative;
+    margin-top: 5px;
+    margin-left: 5px;
+    span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background-color: #df2020;
+      position: absolute;
+      top: 19px;
+    }
+    .price_discount {
+      display: flex;
+      align-items: center;
+      ion-icon {
+        font-size: 20px;
+      }
+      h3 {
+        font-size: 20px;
+      }
+      p {
+        margin-top: -2px;
+        font-size: 14px;
+      }
+    }
+  }
+}
+
+.stock {
+  color: #ee0c0c;
+  margin-top: 10px;
+  margin-bottom: 40px;
+}
+
+.product_details_container {
+  flex: 1;
+  header {
+    width: 100%;
+    position: relative;
+    img {
+      width: 100%;
+      aspect-ratio: 3.5/1;
+      object-fit: cover;
+      border: 1px solid $primary;
+    }
+    .title_banner {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      transform: translate(0, -50%);
+      background-color: #520c0ca4;
+      border-left: 6px solid $primary;
+      padding-left: 40px;
+      box-sizing: border-box;
+
+      h4 {
+        color: red;
+        font-weight: 400;
+        text-shadow: 0 0 7px rgb(82, 82, 82), 0 0 10px #f00, 0 0 21px #f00,
+          0 0 42px #df2020;
+      }
+    }
+  }
+}
+.product_description_h3{
+    margin-top: 20px;
+}
+.product_description{
+    margin-bottom: 40px;
+}
+
+.save{
+    font-size: 18px;
+    color: #f16f6f;
+}
