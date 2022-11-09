@@ -6,7 +6,7 @@
     z-index: 3;
   .left {
     height: 64px;
-    background-color: rgb(36, 27, 27);
+    background-color: rgb(22, 17, 17);
     width: 20vw;
     border-bottom: solid 1px;
     border-bottom: 1px solid $primary;
@@ -26,7 +26,7 @@
   nav{
     width: 80vw;
     height: calc(64px - 6px);
-    background-color: rgb(36, 27, 27);
+    background-color: rgb(22, 17, 17);
     display: flex;
     align-items: center;
     padding: 0px 80px 0px 40px;
@@ -40,12 +40,17 @@
         transform: skewX(-15deg) rotateY(0) rotate(0);
     }
     a{
-        margin-left: auto;
+        margin-left: 40px;
+        text-decoration: none;
         &:hover{
             cursor: pointer;
             text-decoration: underline;
-            text-underline-offset: 2px;
+            text-underline-offset: 6px;
         }
     }
   }
+}
+
+.user_name{
+  margin-left: auto;
 }

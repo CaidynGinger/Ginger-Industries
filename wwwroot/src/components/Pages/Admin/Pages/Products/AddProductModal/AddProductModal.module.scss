@@ -1,0 +1,111 @@
+@import "../../../../../../index.scss";
+.modal {
+  z-index: 21;
+  position: fixed;
+  width: 800px;
+  background-color: rgb(17, 17, 17);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+  border-radius: 15px;
+  transition: all 0.3s ease-in-out;
+}
+.show {
+  top: 50%;
+}
+.price_container {
+  display: flex;
+  align-items: center;
+  div {
+    flex: 1;
+  }
+  .currency {
+    flex: 0;
+    font-size: 30px;
+    margin-right: 20px;
+    width: 50px;
+    ion-icon {
+      margin-top: 20px;
+      display: block;
+    }
+    p {
+      margin-top: 20px;
+      font-size: 25px;
+      margin-right: 5px;
+      margin-left: 5px;
+    }
+  }
+}
+
+.checkbox {
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 60px;
+}
+
+form {
+  button {
+    width: 60%;
+    margin: auto;
+    display: block;
+  }
+}
+
+.close_btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 24px;
+}
+
+.close_btn ion-icon {
+  background-color: $primary;
+  padding: 5px;
+  color: white;
+  border-radius: 5px;
+}
+
+.upload {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  border-radius: 5px;
+
+  p{
+    margin-right: 20px;
+  }
+
+  &[type="file"] {
+    color: transparent;
+    outline: none;
+  }
+  &::file-selector-button {
+    color: $white;
+    padding: 20px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    background-color: $primary;
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.screenshot_uploader{
+    display: flex;
+    .screenshot{
+        margin-left: auto;
+        img{
+            height: 100px;
+            display: block;
+            
+        }
+    }
+     
+}
+

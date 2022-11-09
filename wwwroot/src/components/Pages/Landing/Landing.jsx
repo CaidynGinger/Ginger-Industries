@@ -1,103 +1,60 @@
-import React from "react";
-import { ShipCard } from "../../UICard/ShipCard";
+import React, { useEffect, useState } from "react";
+import { ShipCard } from "../../UI/ShipCard/ShipCard";
 import { SubHeader } from "../../SubHeader/SubHeader";
 import { Carousel } from "../../UI/Carousel/Carousel";
 
 import classes from "./Landing.module.scss";
+import axios from "../../../api/axios";
 
 export const Landing = () => {
-  const ships = [
-    {
-      id: 1,
-      title: "Ship 1",
-      desc: "dpubaodwawdwada",
-      price: 50,
-      discountOptions: {
-        discount: true,
-        discountAmount: 10
-      },
-      stock: 0
-    },
-    {
-      id: 11,
-      title: "Ship 2",
-      desc: "dpubaodwawdwada",
-      price: 100.50,
-      discountOptions: {
-        discount: true,
-        discountAmount: 20
-      },
-      stock: 3
-    },
-    {
-      id: 13,
-      title: "Ship 3",
-      desc: "dpubaodwawdwada",
-      price: 90,
-      discountOptions: {
-        discount: false,
-        discountAmount: 20
-      },
-      stock: 10
-    },
-    {
-      id: 4,
-      title: "Ship 4",
-      desc: "dpubaodwawdwada",
-      price: 199.99,
-      discountOptions: {
-        discount: false,
-        discountAmount: 20
-      },
-      stock: 1
-    },
-  ];
-  const Newships = [
-    {
-      id: 1,
-      title: "Ship 1",
-      desc: "dpubaodwawdwada",
-      price: 50,
-      discountOptions: {
-        discount: true,
-        discountAmount: 10
-      },
-      stock: 0
-    },
-    {
-      id: 11,
-      title: "Ship 2",
-      desc: "dpubaodwawdwada",
-      price: 100.50,
-      discountOptions: {
-        discount: true,
-        discountAmount: 20
-      },
-      stock: 3
-    },
-    {
-      id: 13,
-      title: "Ship 3",
-      desc: "dpubaodwawdwada",
-      price: 90,
-      discountOptions: {
-        discount: false,
-        discountAmount: 20
-      },
-      stock: 10
-    },
-    {
-      id: 4,
-      title: "Ship 4",
-      desc: "dpubaodwawdwada",
-      price: 199.99,
-      discountOptions: {
-        discount: false,
-        discountAmount: 20
-      },
-      stock: 1
-    },
-  ];
+  const [newShipsList, setNewShipsList] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+    const getNewShips = async () => {
+      try {
+        const response = await axios.get("/new-products", {
+          signal: controller.signal,
+        });
+        // console.log(response.data);
+        isMounted && setNewShipsList(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getNewShips();
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, []);
+
+  const [discountedShipsList, setDiscountedShipsList] = useState([]);
+  useEffect(() => {
+    let isMounted = true;
+    const controller = new AbortController();
+    const getNewShips = async () => {
+      try {
+        const response = await axios.get("/discounted-products", {
+          signal: controller.signal,
+        });
+        // console.log(response.data);
+        isMounted && setDiscountedShipsList(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    getNewShips();
+    return () => {
+      isMounted = false;
+      controller.abort();
+    };
+  }, []);
+
+
+
   return (
     <div className={classes.row}>
       <p className={classes.disclaimer}>
@@ -114,8 +71,8 @@ export const Landing = () => {
             </a>
           </header>
           <div className={classes.ship_container}>
-          {ships.map(ship => {
-            return <ShipCard shipDetails={ship}/>
+          {newShipsList.map((ship) => {
+            return <ShipCard key={ship._id} shipDetails={ship}/>
           })}
           </div>
           
@@ -138,8 +95,8 @@ export const Landing = () => {
             </a>
           </header>
           <div className={classes.ship_container}>
-          {Newships.map(ship => {
-            return <ShipCard shipDetails={ship}/>
+          {discountedShipsList.map(ship => {
+            return <ShipCard key={ship._id} shipDetails={ship}/>
           })}
           </div>
         </div>

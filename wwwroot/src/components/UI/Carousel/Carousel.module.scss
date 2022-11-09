@@ -30,6 +30,9 @@
           right: 0;
           top: 50%;
           padding: 40px;
+          padding-top: 100px;
+          width: 500px;
+          height: 100%;
           background-color: #610a0a60;
           transform: translate(-0%, -50%);
           h3 {
@@ -90,7 +93,7 @@
           }
           .buttons {
             width: 400px;
-            margin-top: 40px;
+            margin-top: 20px;
             display: flex;
             align-items: center;
             a {
@@ -144,4 +147,14 @@
 
 .right_arrow_styles {
   right: 80px;
+}
+
+
+.save_div{
+  height: 50px;
+  margin-top: 10px;
+}
+
+.card_title{
+  height: 180px;
 }

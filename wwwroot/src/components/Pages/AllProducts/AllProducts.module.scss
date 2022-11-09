@@ -1,3 +1,14 @@
-.x{
-    height: 2000px;
+@import "../../../index.scss";
+.ship_container {
+  //   padding: 0;
+  //   display: flex;
+  //   width: 100%;
+  //   flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+}
+.main {
+  margin-top: 140px;
 }

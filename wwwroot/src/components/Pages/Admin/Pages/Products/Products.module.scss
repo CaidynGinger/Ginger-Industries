@@ -1,0 +1,61 @@
+@import "../../../../../index.scss";
+
+
+
+.product_header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  a {
+    margin-left: auto;
+    cursor: pointer;
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+}
+
+.product_table {
+  width: 100%;
+  background-color: rgb(24, 24, 24);
+  border-collapse: collapse;
+  th {
+    text-align: left;
+    font-weight: 200;
+    font-size: 14px;
+    padding: 10px 0;
+  }
+  tr {
+    cursor: pointer;
+    &:hover {
+      background-color: rgb(40, 32, 32);
+    }
+  }
+  td {
+    padding: 10px;
+  }
+  .first {
+    padding-left: 40px;
+  }
+
+  a {
+    &:hover {
+      color: $primary;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
+  }
+}
+
+
+.gradient{
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.527);
+    z-index: 20;
+}

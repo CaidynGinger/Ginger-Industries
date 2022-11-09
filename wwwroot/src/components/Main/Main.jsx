@@ -18,10 +18,9 @@ export const Main = () => {
         <SubHeader />
         <div className={classes.outlet}>
           <Outlet />
-          <Footer/>
         </div>
+        <Footer />
       </div>
-      
     </div>
   );
 };

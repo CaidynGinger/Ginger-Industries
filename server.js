@@ -4,8 +4,9 @@ require("dotenv/config");
 const cors = require("cors");
 const connectDB = require("./config/dbConn");
 const mongoose = require("mongoose");
-const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 const PORT = process.env.PORT || 3500;
+const path = require("path");
 
 connectDB();
 
@@ -14,6 +15,7 @@ app.use(
     origin: "http://localhost:3000",
   })
 );
+
 app.use(bodyParser.json());
 app.use(
   bodyParser.urlencoded({
@@ -21,11 +23,15 @@ app.use(
   })
 );
 
+app.use(express.static('images'))
+app.use('/images', express.static('images'))
+
 // routes
 // app.use('/register', require('./routes/register'));
 
-
-
+app.use(require("./routes/product.routes"));
+app.use(require("./routes/auth.routes"));
+app.use(require("./routes/user.routes"));
 
 mongoose.connection.once("open", () => {
   console.log("connected to MongoDb");
