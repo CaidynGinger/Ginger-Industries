@@ -5,6 +5,7 @@ import { Carousel } from "../../UI/Carousel/Carousel";
 
 import classes from "./Landing.module.scss";
 import axios from "../../../api/axios";
+import { Link } from "react-router-dom";
 
 export const Landing = () => {
   const [newShipsList, setNewShipsList] = useState([]);
@@ -66,9 +67,9 @@ export const Landing = () => {
         <div className={classes.div}>
           <header>
             <h2>Newest Ships</h2>
-            <a>
+            <Link to={'/all-products'}>
               <span className={classes.arrows}>❭❭❭</span> See All Ships
-            </a>
+            </Link>
           </header>
           <div className={classes.ship_container}>
           {newShipsList.map((ship) => {
@@ -90,9 +91,9 @@ export const Landing = () => {
         <div className={classes.div}>
           <header>
             <h2>Discounted Ships</h2>
-            <a>
+            <Link to={'/all-products'}>
               <span className={classes.arrows}>❭❭❭</span> See All Ships
-            </a>
+            </Link>
           </header>
           <div className={classes.ship_container}>
           {discountedShipsList.map(ship => {

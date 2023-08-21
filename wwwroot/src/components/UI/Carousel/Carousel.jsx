@@ -68,7 +68,7 @@ export const Carousel = () => {
         <div className={`${classes.slider_information} ${classes.row}`}>
           <div className={classes.product_card}>
             <h3 className={classes.card_title}>{product.title}</h3>
-            <p>{product.desc}</p>
+            <p>{(product.desc).substring(0,350)}</p>
 
             <div className={classes.price}>
               {product.discountOptions.discount ? (

@@ -51,8 +51,10 @@ userRouter.post("/auth", async (req, res) => {
       .status(400)
       .json({ message: "Email and password are required." });
   const foundUser = await userSchema.findOne({ email: email }).exec();
+  console.log(foundUser);
   if (!foundUser) return res.sendStatus(401); //Unauthorized
   const match = await bcrypt.compare(pwd, foundUser.password);
+  console.log(match);
   if (match) {
     const roles = foundUser.roles;
     // create JWTs

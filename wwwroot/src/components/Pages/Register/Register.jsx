@@ -94,7 +94,7 @@ const Register = () => {
     try {
       const response = await Axios.request({
         method: "POST",
-        url: "http://localhost:5001/api/register",
+        url: "http://localhost:3500/register",
         headers: { "Content-Type": "application/json" },
         data: { user, pwd, Email },
       });
@@ -104,7 +104,7 @@ const Register = () => {
       setSuccess(true);
       //clear state and controlled inputs
       //need value attrib on inputs for this
-      setUser("");
+      // setUser("");
       setPwd("");
       // setEmail("");
       setMatchPwd("");
@@ -131,14 +131,11 @@ const Register = () => {
           <div className={styles.register_container}>
             <h2>Success</h2>
             <p className={styles.success_p}>
-              Almost there we just need you to validate your email that was sent
-              to you at <br /> <br />
-              <span>{Email}</span>
+              You are ready to log in <br /> <br />
+              <span>{user}</span>
             </p>
             <div className={styles.after_links}>
-              <a href="https://mail.google.com/">
-                Go to your email
-              </a>
+              <Link to={'/login'}>Login</Link>
             </div>
           </div>
         </section>

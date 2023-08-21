@@ -11,7 +11,7 @@ export const Header = () => {
     console.log(Auth);
   }, [Auth]);
   const logoutHandler = () => {
-    setAuth();
+    setAuth({});
     navigate("/");
   };
   return (

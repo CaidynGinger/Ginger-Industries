@@ -35,9 +35,13 @@ export const SubHeader = () => {
     }
   }, [scrollPosition, location.pathname]);
 
+  console.log(Auth);
+
   return (
     <>
-      {scrollPosition >= 600 && location === '/' && <div className={classes.spacer}></div>}
+      {scrollPosition >= 600 && location === "/" && (
+        <div className={classes.spacer}></div>
+      )}
 
       <div className={NavCss}>
         <div className={classes.left}>
@@ -62,15 +66,28 @@ export const SubHeader = () => {
           >
             All Products
           </Link>
-          {Auth?.userData?.UserInfo?.roles.filter((roles) => {
-            return roles === 5150;
-          }) && <Link  className={`${
-            location.pathname === "/admin" ? classes.selected : undefined
-          }`} to="/admin">Admin</Link>}
+          {Auth.roles &&
+            Auth?.roles.filter((roles) => {
+              return roles === 5150;
+            }).length > 0 && (
+              <Link
+                className={`${
+                  location.pathname === "/admin" ? classes.selected : undefined
+                }`}
+                to="/admin"
+              >
+                Admin
+              </Link>
+            )}
 
-          <Link  className={`${
+          <Link
+            className={`${
               location.pathname === "/cart" ? classes.selected : undefined
-            }`} to="/cart">Cart</Link>
+            }`}
+            to="/cart"
+          >
+            Cart
+          </Link>
         </nav>
         <div className={classes.right}>
           <span className={classes.light}></span>
